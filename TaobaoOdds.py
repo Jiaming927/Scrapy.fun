@@ -5,7 +5,18 @@ url = urllib.urlopen("http://c.caipiao.taobao.com/lottery/order/lottery_jczq_hhg
 
 content = url.read()
 
-soup = BeautifulSoup(content)
+# soup = BeautifulSoup(content, fromEncoding=”GB18030“)
+soup = BeautifulSoup(content);
 
-for td in soup.find_all("td"):
-	print td
+# Home team
+# Visit team
+
+
+for li in soup.originalEncoding.find_all("li", {"class" : "home betli"}):
+	print li.getText();
+
+for li in soup.originalEncoding.find_all("li", {"class" : "deuce betli"}):
+	print li.getText();
+
+for li in soup.originalEncoding.find_all("li", {"class" : "visit betli exp"}):
+	print li.getText();
