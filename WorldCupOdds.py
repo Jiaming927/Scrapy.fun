@@ -22,3 +22,15 @@ for li in soup.find_all("li", {"class" : "deuce betli"}):
 
 for li in soup.find_all("li", {"class" : "visit betli exp"}):
 	print li.getText();
+
+home = {"win": , "draw": , "lose":}
+
+visit = {"win": , "draw": , "lose":}
+
+result = []
+
+for homeKey in home:
+	for visitKey in visit
+		print homeKey + " " + visitKey + ":" home[homeKey] * visit[visitKey]
+
+
