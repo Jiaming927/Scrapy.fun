@@ -33,4 +33,7 @@ for homeKey in home:
 	for visitKey in visit
 		print homeKey + " " + visitKey + ":" home[homeKey] * visit[visitKey]
 
+bet = 100
+# Setting win a little line 5 %
 
+bet * home["win"] / (home["win"] + visit["lose"])
