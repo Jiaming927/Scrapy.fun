@@ -36,4 +36,8 @@ for homeKey in home:
 bet = 100
 # Setting win a little line 5 %
 
-bet * home["win"] / (home["win"] + visit["lose"])
+bet * home["win"] * 1.05 / (home["win"] + home["lose"])
+
+bet * home["lose"] * 0.95 / (home["win"] + home["lose"])
+
+
