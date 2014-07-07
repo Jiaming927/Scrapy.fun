@@ -1,14 +1,11 @@
 from bs4 import BeautifulSoup
 import urllib
 
-url = urllib.urlopen("http://c.caipiao.taobao.com/lottery/order/lottery_jczq_hhgg_by_client.htm")
+url = urllib.urlopen("http://sports.williamhill.com/bet/en-gb/betting/")
 
 content = url.read()
 
 soup = BeautifulSoup(content)
-
-# td .Home team => a .h => title
-
 
 for a in soup.find_all("a", {"class" : "h"}):
 	if a.parent.name == "td":
@@ -22,22 +19,5 @@ for li in soup.find_all("li", {"class" : "deuce betli"}):
 
 for li in soup.find_all("li", {"class" : "visit betli exp"}):
 	print li.getText();
-
-home = {"win": , "draw": , "lose":}
-
-visit = {"win": , "draw": , "lose":}
-
-result = []
-
-for homeKey in home:
-	for visitKey in visit
-		print homeKey + " " + visitKey + ":" home[homeKey] * visit[visitKey]
-
-bet = 100
-# Setting win a little line 5 %
-
-bet * home["win"] * 1.05 / (home["win"] + home["lose"])
-
-bet * home["lose"] * 0.95 / (home["win"] + home["lose"])
 
 
