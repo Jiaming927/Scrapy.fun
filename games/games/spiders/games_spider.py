@@ -1,4 +1,6 @@
 import scrapy
+import urllib
+from bs4 import BeautifulSoup
 
 class games_spider(scrapy.spider):
   name = games
@@ -8,6 +10,10 @@ class games_spider(scrapy.spider):
   ]
   
   def parse(self, response):
-      filename = response.url.split("/")[-2]
-      with open(filename, 'wb') as f:
-          f.write(response.body)
+    content = response.body
+    soup = BeautifulSoup(content)
+    for tbody in soup.find_all("tbody"):
+      print tbody.getText()
+      div => tbody
+      table => thead => tr => th => span
+      table => tbody => tr => td => div
