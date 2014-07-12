@@ -1,4 +1,4 @@
-# Scrapy settings for games project
+# Scrapy settings for googleTrendingApp project
 #
 # For simplicity, this file contains only the most important settings by
 # default. All the other settings are documented here:
@@ -6,10 +6,10 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #
 
-BOT_NAME = 'games'
+BOT_NAME = 'googleTrendingApp'
 
-SPIDER_MODULES = ['games.spiders']
-NEWSPIDER_MODULE = 'games.spiders'
+SPIDER_MODULES = ['googleTrendingApp.spiders']
+NEWSPIDER_MODULE = 'googleTrendingApp.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'games (+http://www.yourdomain.com)'
+#USER_AGENT = 'googleTrendingApp (+http://www.yourdomain.com)'
