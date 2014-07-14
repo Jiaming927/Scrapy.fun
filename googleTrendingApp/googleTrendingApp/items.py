@@ -1,8 +1,5 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# http://doc.scrapy.org/en/latest/topics/items.html
-
+# Item: app
+# Fields: name, company, price, description
 from scrapy.item import Item, Field
 
 class GoogleTrendingAppItem(Item):
