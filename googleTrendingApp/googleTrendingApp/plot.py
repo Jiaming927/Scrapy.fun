@@ -8,7 +8,7 @@ py.sign_in('Python-Demo-Account', 'gwt101uhh0')
 
 data = Data([
     Bar(
-        x=['giraffes', 'orangutans', 'monkeys'],
+        x=['giraffes', 'wassup', 'monkeys'],
         y=[20, 14, 23]
     )
 ])
