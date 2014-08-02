@@ -1,4 +1,5 @@
 import json
+import sys
 import string
 import plotly.plotly as py
 from plotly.graph_objs import *
@@ -12,7 +13,6 @@ from glob import glob
 py.sign_in('Python-Demo-Account', 'gwt101uhh0')
 files = glob('items*.json')
 print files
-
 
 apps = {}
 dataXList = []
@@ -29,18 +29,34 @@ for item in files:
 			else:
 				apps[name] = 1
 
-for key in apps:
-	dataXList.append(key)
-	dataYList.append(apps[key])
+if len(sys.argv) < 2:
+	for key in apps:
+		print str(key.encode('utf-8')).strip() + ' has been in trending apps ' + str(apps[key]) + ' time(s).'
+	# 	dataXList.append(key)
+	# 	dataYList.append(apps[key])
 
-data = Data([
-    Bar(
-        x=dataXList,
-        y=dataYList
-    )
-])
+	# data = Data([
+	#     Bar(
+	#         x=dataXList,
+	#         y=dataYList
+	#     )
+	# ])
 
-plot_url = py.plot(data, filename='basic-bar')
+	# plot_url = py.plot(data, filename='basic-bar')
+else:
+	name = sys.argv[1]
+	if name not in apps:
+		print 'name not in apps'
+	else:
+		dataXList.append(name)
+		dataYList.append(apps[name])
+		data = Data([
+		    Bar(
+		        x=dataXList,
+		        y=dataYList
+		    )
+		])
+		plot_url = py.plot(data, filename='basic-bar')
 
 
 # try:
