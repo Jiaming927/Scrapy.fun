@@ -12,6 +12,7 @@ from glob import glob
 
 py.sign_in('Python-Demo-Account', 'gwt101uhh0')
 files = glob('items*.json')
+filesNum = len(files)
 print files
 
 apps = {}
@@ -31,7 +32,7 @@ for item in files:
 
 if len(sys.argv) < 2:
 	for key in apps:
-		print str(key.encode('utf-8')).strip() + ' has been in trending apps ' + str(apps[key]) + ' time(s).'
+		print key.encode('utf-8').strip() + ' has been in trending apps ' + str(apps[key]) + ' time(s).'
 	# 	dataXList.append(key)
 	# 	dataYList.append(apps[key])
 
@@ -44,19 +45,27 @@ if len(sys.argv) < 2:
 
 	# plot_url = py.plot(data, filename='basic-bar')
 else:
-	name = sys.argv[1]
-	if name not in apps:
-		print 'name not in apps'
+	param = sys.argv[1]
+
+	if param == 'always':
+		for key in apps:
+			if (apps[key] == filesNum):
+				print key.encode('utf-8').strip()
+	
 	else:
-		dataXList.append(name)
-		dataYList.append(apps[name])
-		data = Data([
-		    Bar(
-		        x=dataXList,
-		        y=dataYList
-		    )
-		])
-		plot_url = py.plot(data, filename='basic-bar')
+		name = param
+		if name not in apps:
+			print 'name not in apps'
+		else:
+			dataXList.append(name)
+			dataYList.append(apps[name])
+			data = Data([
+			    Bar(
+			        x=dataXList,
+			        y=dataYList
+			    )
+			])
+			plot_url = py.plot(data, filename='basic-bar')
 
 
 # try:
