@@ -6,6 +6,9 @@
 from scrapy.item import Item, Field
 
 class StockpriceItem(Item):
-    # define the fields for your item here like:
-    # name = Field()
+    price = Field()
+    time = Field()
+    priceChange = Field()
+    percentage = Field()
+    Range = Field()
     pass
