@@ -5,7 +5,7 @@
 
 from scrapy.item import Item, Field
 
-class StockpriceItem(Item):
+class StockPriceItem(Item):
     price = Field()
     time = Field()
     priceChange = Field()
