@@ -2,11 +2,16 @@ from scrapy.spider import Spider
 from scrapy.selector import Selector
 from stockPrice.items import StockPriceItem
 
-class GTASpider(Spider):
+class GSSpider(Spider):
 	name = "googleStock"
 	allowed_domains = ["google.com"]
 	start_urls = ["https://www.google.com/finance/portfolio?action=view&pid=1&ei=fKXkU_DaG-T2wAO8wIC4BA"]
-
+	print 'hahaha'
+	print ''
 	def parse(self, response):
-		
-		return items
+		sel = Selector(response)
+		items = []
+		for stock in sel.xpath('//tr/td[@class="pf-table-lname pf-table-cell lft"]'):
+			name = stock.xpath('a/text()').extract()
+			print stock
+		#return items
