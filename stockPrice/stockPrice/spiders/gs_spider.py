@@ -9,9 +9,10 @@ class GSSpider(Spider):
 	print 'hahaha'
 	print ''
 	def parse(self, response):
-		sel = Selector(response)
-		items = []
-		for stock in sel.xpath('//tr/td[@class="pf-table-lname pf-table-cell lft"]'):
-			name = stock.xpath('a/text()').extract()
-			print stock
+		print response
+		# sel = Selector(response)
+		# items = []
+		# for stock in sel.xpath('//tr/td[@class="pf-table-lname pf-table-cell lft"]'):
+		# 	name = stock.xpath('a/text()').extract()
+		# 	print 'wassup'
 		#return items
