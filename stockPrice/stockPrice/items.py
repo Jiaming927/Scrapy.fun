@@ -8,7 +8,8 @@ from scrapy.item import Item, Field
 class StockPriceItem(Item):
     price = Field()
     time = Field()
-    priceChange = Field()
+    change = Field()
     percentage = Field()
     Range = Field()
+    volume = Field()
     pass
