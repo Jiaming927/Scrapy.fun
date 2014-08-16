@@ -24,9 +24,7 @@ class GSSpider(Spider):
 		# time = elt[1].extract()
 		# price = elt[0].extract()
 
-		#//table[@class="snap-data"]/tbody/tr/td[@class="val"]
-		elt = sel.xpath('//table[@class="snap-data"]')
-		print type(elt)
+		# elt = sel.xpath('//table[@class="snap-data"]/tbody/tr/td[@class="val"]')
 		# volume = elt[3]
 		# Range = elt[0].extract()
 
