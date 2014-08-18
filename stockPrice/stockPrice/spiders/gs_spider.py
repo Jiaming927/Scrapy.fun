@@ -23,11 +23,15 @@ class GSSpider(Spider):
 
 	def parse(self, response):
 		sel = Selector(response)
+		text = ''
 		name = str(sel.xpath('//div[@class="title"]/h2/text()').extract())
 		elt = sel.xpath('//div[@class="yfi_rt_quote_summary_rt_top sigfig_promo_1"]/div/span/span/text()')
 		time = elt[7].extract()
 		price = elt[0].extract()
 		change = elt[2].extract()
+
+		if (change > 5):
+			text += 'change more than 5 %' + str(change) + '\n'
 
 		left = name.index('(')
 		right = name.index(')')
@@ -36,8 +40,15 @@ class GSSpider(Spider):
 		with open('stockPrice/' + name + '.json', 'rU') as jsonFile:
 			data = json.load(jsonFile)
 			print name
-			print int(data['quote']['AverageDailyVolume']) - int(data['quote']['Volume'])
-			#YearLow
+			volumeDif = int(data['quote']['AverageDailyVolume']) - int(data['quote']['Volume'])
+			if (volumeDif / int(data['quote']['AverageDailyVolume']) > 5):
+				text += 'volume dif more than 5%' + str(volumeDif) + '\n'
+
+			# Set price
+			# See
+			# Lower than YearLow or higher than Yearhigh
+
+			# better make a function
 
 
 		# elt = sel.xpath('//table[@id="table2"]')
