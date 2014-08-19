@@ -17,22 +17,25 @@ class GSSpider(Spider):
 				result.append(url + row[1])
 			return result
 
-	name = "googleStock"
+	name = "stockMonitor"
 	allowed_domains = ["yahoo.com"]
 	start_urls = generateList()
+	text = ''
+
+	def alarm(param, limit):
+		if (param > limit):
+			text += param + ' more than ' + limit + ' \n'
+			# Send email
 
 	def parse(self, response):
 		sel = Selector(response)
-		text = ''
 		name = str(sel.xpath('//div[@class="title"]/h2/text()').extract())
 		elt = sel.xpath('//div[@class="yfi_rt_quote_summary_rt_top sigfig_promo_1"]/div/span/span/text()')
 		time = elt[7].extract()
 		price = elt[0].extract()
 		change = elt[2].extract()
 
-		if (change > 5):
-			text += 'change more than 5 %' + str(change) + '\n'
-
+		alarm(change, 0.05)
 		left = name.index('(')
 		right = name.index(')')
 		name = name[left + 1:right].strip()
@@ -41,14 +44,10 @@ class GSSpider(Spider):
 			data = json.load(jsonFile)
 			print name
 			volumeDif = int(data['quote']['AverageDailyVolume']) - int(data['quote']['Volume'])
-			if (volumeDif / int(data['quote']['AverageDailyVolume']) > 5):
-				text += 'volume dif more than 5%' + str(volumeDif) + '\n'
+			alarm(abs(volumeDif / int(data['quote']['AverageDailyVolume']), 0.05):
 
 			# Set price
-			# See
 			# Lower than YearLow or higher than Yearhigh
-
-			# better make a function
 
 
 		# elt = sel.xpath('//table[@id="table2"]')
