@@ -2,6 +2,7 @@ import csv, os, json
 from scrapy.spider import Spider
 from scrapy.selector import Selector
 from stockPrice.items import StockPriceItem
+from scrapy.mail import MailSender
 
 # Daily email
 # Alert email
@@ -29,23 +30,28 @@ class GSSpider(Spider):
 			# Send email
 
 	def parse(self, response):
-		sel = Selector(response)
-		name = str(sel.xpath('//div[@class="title"]/h2/text()').extract())
-		elt = sel.xpath('//div[@class="yfi_rt_quote_summary_rt_top sigfig_promo_1"]/div/span/span/text()')
-		time = elt[7].extract()
-		price = elt[0].extract()
-		change = elt[2].extract()
+		mailer = MailSender('smtp.gmail.com', None, '***', '***', 465)
 
-		alarm(change, 0.05)
-		left = name.index('(')
-		right = name.index(')')
-		name = name[left + 1:right].strip()
+		mailer.send(to=["jiaminguw@gmail.com"], subject="This is the subject", body="HELLO WORLD")
 
-		with open('stockPrice/' + name + '.json', 'rU') as jsonFile:
-			data = json.load(jsonFile)
-			print name
-			volumeDif = int(data['quote']['AverageDailyVolume']) - int(data['quote']['Volume'])
-			alarm(abs(volumeDif / int(data['quote']['AverageDailyVolume']), 0.05):
+
+		# sel = Selector(response)
+		# name = str(sel.xpath('//div[@class="title"]/h2/text()').extract())
+		# elt = sel.xpath('//div[@class="yfi_rt_quote_summary_rt_top sigfig_promo_1"]/div/span/span/text()')
+		# time = elt[7].extract()
+		# price = elt[0].extract()
+		# change = elt[2].extract()
+
+		# alarm(change, 0.05)
+		# left = name.index('(')
+		# right = name.index(')')
+		# name = name[left + 1:right].strip()
+
+		# with open('stockPrice/' + name + '.json', 'rU') as jsonFile:
+		# 	data = json.load(jsonFile)
+		# 	print name
+		# 	volumeDif = int(data['quote']['AverageDailyVolume']) - int(data['quote']['Volume'])
+		# 	alarm(abs(volumeDif / int(data['quote']['AverageDailyVolume']), 0.05):
 
 			# Set price
 			# Lower than YearLow or higher than Yearhigh
