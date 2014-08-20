@@ -23,7 +23,8 @@ class GSSpider(Spider):
 	text = ''
 
 	def alarm(param, limit):
-		if (param > limit):
+
+		if (float(param) > limit):
 			text += param + ' more than ' + limit + ' \n'
 			# Send email
 
